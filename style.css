@@ -1,0 +1,25 @@
+.header{
+    background-color: rgb(77, 25, 25);
+    text-align: center;
+    color: blanchedalmond;
+   
+}
+h3{
+    text-align: right;
+    color: aliceblue;
+}
+body{
+    background-image: url(https://imgs.6sqft.com/wp-content/uploads/2016/10/14160508/nypl-book-stacks1-1024x619.jpg);
+}
+div{
+    background-color: aliceblue;
+    height: 140px;
+    width: 200px;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+}
+button{
+    background-color: blue;
+    border-radius: 7px;
+}
