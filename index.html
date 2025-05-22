@@ -2,144 +2,118 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Online Library Login</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-
-  <!-- css is used from here  -->
-
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Library</title>
   <style>
-    nav img {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 50%;
-    }
-    nav{
-      background-color: rgb(245, 242, 242);
-      text-align: right;
-      img{
-        border-radius: 20px;
-      }
-      
-      
-    }
     body {
-      background: url('images/library-background.jpg') no-repeat center center fixed;
-      background-size: cover;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
     }
-    .center-wrapper {
-  height: calc(100vh - 100px);  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-    .login-box {
-      margin-top: 500px;
-      margin:auto ;
-      background: #f4f5f2ea;
-      padding: 100px;
-      border-radius: 10px;
-      max-width: 400px; 
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    header {
+      background: #15579a;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
     }
-    button{
-        background-color: rgb(5, 50, 250);
-        color: white;
-        border-radius: 10px;
-        width: 100px;
-      }
-    a:hover{
-        color: rgb(2, 2, 110);
-      }
-      button:hover{
-        background-color: darkblue;
-      }
+    nav {
+      background: #4588cb;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      padding: 20px;
+    }
+    .search-bar {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .search-bar input[type="text"] {
+      width: 60%;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .featured-books {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .book {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .book img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    footer {
+      background: #1e6ebf;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 40px;
+    }
   </style>
-
-
-
-
-  <!-- html is used from here  -->
-
-
 </head>
- 
 <body>
-  <header>
-    <nav>
-      <img src="images/logo.jpg" alt="">
-       <a href="create.html">create account</a>
-    </nav>
-  </header>
-  <main class="center-wrapper">
-    <div class="login-box">
-    <strong>
-      <h2>Library login</h2><br><br>
-    </strong>
-     <form action=" student.html" id="loginForm">
-       <label for="email">Email</label><br>
-      <input type="text" id="email" placeholder="Enter email"><br><br>
-      <label for="Password">Password</label><br>
-      <input type="password" id="pass" placeholder="Password"><br><br>
-      <label for="choice">Login as</label><br>
-      <select name="option" id="option">
-          <option value="select">select</option>
-        <option value="anmid">Admin</option>
-        <option value="student">student</option>
-        </select><br><br>
-        <button>Login</button><br><br>
-     </form>
 
-      <a href="forget.html">Forget Password</a>
-      
-        
-      
-    </form>
+  <header>
+    <h1>Welcome to the Online Library</h1>
+    <p>Your gateway to a world of knowledge</p>
+  </header>
+
+  <nav>
+    <a href="index.html" target="_blank">Home</a>
+    <a href="#">Books</a>
+    <a href="#">Categories</a>
+    <a href="login.html"target="_blank" >Login</a>
+    <a href="Register.html" target="_blank">Register</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" placeholder="Search for books, authors, or categories...">
+    </div>
+
+    <h2>Featured Books</h2>
+    <div class="featured-books">
+      <div class="book">
+        <img src="https://via.placeholder.com/150x200" alt="Book Cover">
+        <h3>Book Title 1</h3>
+        <p>Author Name</p>
+      </div>
+      <div class="book">
+        <img src="https://via.placeholder.com/150x200" alt="Book Cover">
+        <h3>Book Title 2</h3>
+        <p>Author Name</p>
+      </div>
+      <div class="book">
+        <img src="https://via.placeholder.com/150x200" alt="Book Cover">
+        <h3>Book Title 3</h3>
+        <p>Author Name</p>
+      </div>
+    </div>
   </div>
 
+  <footer>
+    <p>&copy; 2025 Online Library. All rights reserved.</p>
+  </footer>
 
-  </main>
-<footer>
-  
-</footer>
-
-
-<!-- java secript is used from here -->
-
-<script>
-  document.getElementById('loginForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent form from submitting normally
-
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('pass').value.trim();
-      const role = document.getElementById('option').value;
-
-      const emailReg =/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-      if (!emailReg.test(email)) {
-        alert("Please enter a valid email address.");
-        return;
-      }
-
-      if (password === "") {
-        alert("Please enter your password.");
-        return;
-      }
-
-      if (role === "select") {
-        alert("Please select a role (Admin or Student).");
-        return;
-      }
-
-      // Redirect based on selected role
-      if (role === "admin") {
-        window.location.href = "admin.html";
-      } else if (role === "student") {
-        window.location.href = "student.html";
-      }
-    });
-</script>
 </body>
 </html>
