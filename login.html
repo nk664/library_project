@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Online Library Login</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+  <!-- css is used from here  -->
+
+
+  <style>
+    nav img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+    nav{
+      background-color: rgb(245, 242, 242);
+      text-align: right;
+      img{
+        border-radius: 20px;
+      }
+      
+      
+    }
+    body {
+      background: url('images/library-background.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .center-wrapper {
+  height: calc(100vh - 100px);  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+    .login-box {
+      margin-top: 500px;
+      margin:auto ;
+      background: #f4f5f2ea;
+      padding: 100px;
+      border-radius: 10px;
+      max-width: 400px; 
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    button{
+        background-color: rgb(5, 50, 250);
+        color: white;
+        border-radius: 10px;
+        width: 100px;
+      }
+    a:hover{
+        color: rgb(2, 2, 110);
+      }
+      button:hover{
+        background-color: darkblue;
+      }
+  </style>
+
+
+
+
+  <!-- html is used from here  -->
+
+
+</head>
+ 
+<body>
+  <header>
+    <nav>
+      <img src="images/logo.jpg" alt="">
+       <a href="create.html">create account</a>
+    </nav>
+  </header>
+  <main class="center-wrapper">
+    <div class="login-box">
+    <strong>
+      <h2>Library login</h2><br><br>
+    </strong>
+     <form action=" student.html" id="loginForm">
+       <label for="email">Email</label><br>
+      <input type="text" id="email" placeholder="Enter email"><br><br>
+      <label for="Password">Password</label><br>
+      <input type="password" id="pass" placeholder="Password"><br><br>
+      <label for="choice">Login as</label><br>
+      <select name="option" id="option">
+          <option value="select">select</option>
+        <option value="anmid">Admin</option>
+        <option value="student">student</option>
+        </select><br><br>
+        <button>Login</button><br><br>
+     </form>
+
+      <a href="forget.html">Forget Password</a>
+      
+        
+      
+    </form>
+  </div>
+
+
+  </main>
+<footer>
+  
+</footer>
+
+
+<!-- java secript is used from here -->
+
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form from submitting normally
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('pass').value.trim();
+      const role = document.getElementById('option').value;
+
+      const emailReg =/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+      if (!emailReg.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      if (password === "") {
+        alert("Please enter your password.");
+        return;
+      }
+
+      if (role === "select") {
+        alert("Please select a role (Admin or Student).");
+        return;
+      }
+
+      // Redirect based on selected role
+      if (role === "admin") {
+        window.location.href = "admin.html";
+      } else if (role === "student") {
+        window.location.href = "student.html";
+      }
+    });
+</script>
+</body>
+</html>
