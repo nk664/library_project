@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forget Password</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    nav {
+      background-color: #1c53b2;
+      text-align: center;
+      color: aliceblue;
+      padding: 20px;
+      font-size: x-large;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    body {
+      background-size: cover;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    .center-wrapper {
+      height: calc(100vh - 100px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .forget-box {
+      background: #f4f5f2ea;
+      padding: 40px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: rgb(5, 50, 250);
+      color: white;
+      border-radius: 10px;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: darkblue;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <h1>Welcome to Library</h1>
+    </nav>
+  </header>
+
+  <main class="center-wrapper">
+    <div class="forget-box">
+      <form id="loginForm">
+        <label for="phone">Phone</label>
+        <input type="number" id="phone" placeholder="Enter Number" required>
+        <button type="button" id="sendOtpBtn">Send OTP</button>
+
+        <div id="otpSection" class="hidden">
+          <label for="otp">Enter OTP</label>
+          <input type="text" id="otp" placeholder="Enter OTP">
+          <button type="button" id="verifyOtpBtn">Verify</button>
+        </div>
+
+        <div id="resetSection" class="hidden">
+          <label for="newPass">Reset Password</label>
+          <input type="password" id="newPass" placeholder="Enter new password">
+          <label for="confirmPass">Confirm Password</label>
+          <input type="password" id="confirmPass" placeholder="Confirm password">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    let generatedOtp = '';
+
+    // Send OTP button
+    document.getElementById("sendOtpBtn").addEventListener("click", () => {
+      const phone = document.getElementById("phone").value.trim();
+      if (phone.length !== 10) {
+        alert("Please enter a valid 10-digit phone number.");
+        return;
+      }
+
+      // Generate 6-digit OTP
+      generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+      alert("Your OTP is: " + generatedOtp);
+
+      document.getElementById("otpSection").classList.remove("hidden");
+    });
+
+    // Verify OTP button
+    document.getElementById("verifyOtpBtn").addEventListener("click", () => {
+      const enteredOtp = document.getElementById("otp").value.trim();
+      if (enteredOtp === generatedOtp) {
+        alert("OTP verified successfully.");
+        document.getElementById("resetSection").classList.remove("hidden");
+      } else {
+        alert("Incorrect OTP. Please try again.");
+      }
+    });
+
+    // Final password validation
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const newPass = document.getElementById("newPass").value;
+      const confirmPass = document.getElementById("confirmPass").value;
+
+      if (newPass.length < 6) {
+        alert("Password must be at least 6 characters.");
+        return;
+      }
+
+      if (newPass !== confirmPass) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+      alert("Password reset successful!");
+      this.reset();
+      // Optionally redirect or hide form
+    });
+  </script>
+</body>
+</html>
