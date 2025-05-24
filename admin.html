@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard </title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #756ea0;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: auto;
+      background: #e4dede;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      margin-top: 30px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 5px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #babad3;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.85em;
+      display: none;
+    }
+
+    button {
+      margin-top: 20px;
+      background: #343a40;
+      color: white;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 6px;
+    }
+
+    button:hover {
+      background: #212529;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Admin Panel</h2>
+
+  <form id="adminForm" novalidate>
+     <br> <h3>Book Management</h3>
+
+    <label for="bookTitle">Book Title</label>
+    <input type="text" id="bookTitle" name="bookTitle">
+    <div class="error" id="bookTitleError">Title cannot be empty.</div>
+
+    <label for="bookAuthor">Author</label>
+    <input type="text" id="bookAuthor" name="bookAuthor">
+    <div class="error" id="bookAuthorError">Author is required.</div>
+
+    <label for="bookISBN">ISBN</label>
+    <input type="text" id="bookISBN" name="bookISBN">
+    <div class="error" id="bookISBNError">Enter a valid ISBN (10-13 characters).</div>
+
+    <label for="bookStatus">Availability</label>
+    <select id="bookStatus" name="bookStatus">
+      <option value="">Select Status</option>
+      <option value="Available">Available</option>
+      <option value="Issued">Issued</option>
+    </select>
+    <div class="error" id="bookStatusError">Please select a status.</div>
+
+    <h3>Student Management</h3>
+
+    <label for="studentName">Student Name</label>
+    <input type="text" id="studentName" name="studentName">
+    <div class="error" id="studentNameError">Student name must be at least 3 characters.</div>
+
+    <label for="studentEmail">Email</label>
+    <input type="email" id="studentEmail" name="studentEmail">
+    <div class="error" id="studentEmailError">Enter a valid email address.</div>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById("adminForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    let valid = true;
+
+    const validate = (id, errId, condition) => {
+      const error = document.getElementById(errId);
+      if (condition) {
+        error.style.display = "block";
+        valid = false;
+      } else {
+        error.style.display = "none";
+      }
+    };
+
+    validate("adminUser", "adminUserError", document.getElementById("adminUser").value.trim().length < 4);
+    validate("adminPass", "adminPassError", document.getElementById("adminPass").value.trim().length < 6);
+    validate("bookTitle", "bookTitleError", document.getElementById("bookTitle").value.trim() === "");
+    validate("bookAuthor", "bookAuthorError", document.getElementById("bookAuthor").value.trim() === "");
+    validate("bookISBN", "bookISBNError", document.getElementById("bookISBN").value.trim().length < 10);
+    validate("bookStatus", "bookStatusError", document.getElementById("bookStatus").value === "");
+    validate("studentName", "studentNameError", document.getElementById("studentName").value.trim().length < 3);
+    
+    const emailVal = document.getElementById("studentEmail").value.trim();
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    validate("studentEmail", "studentEmailError", !emailVal.match(emailPattern));
+
+    if (valid) {
+      alert("Admin data submitted successfully!");
+      this.reset();
+    }
+  });
+</script>
+
+</body>
+</html>
