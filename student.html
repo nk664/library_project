@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -146,3 +147,153 @@
   </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Account - Library System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f3;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    h3 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.85em;
+      display: none;
+    }
+
+    button {
+      margin-top: 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Student Account & Book Request</h2>
+
+    <form id="studentForm" novalidate>
+      <h3>Student Account</h3>
+     
+      <h3>Book Request</h3>
+
+      <label for="studentId">Student ID</label>
+      <input type="text" id="studentId" name="studentId">
+      <div class="error" id="studentIdError">Enter a valid Student ID.</div>
+
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name">
+      <div class="error" id="nameError">Name is required and should be at least 3 characters.</div>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email">
+      <div class="error" id="emailError">Enter a valid email address.</div>
+
+      <label for="bookId">Book ID</label>
+      <input type="text" id="bookId" name="bookId">
+      <div class="error" id="bookIdError">Book ID cannot be empty.</div>
+
+      <label for="issueDate">Issue Date</label>
+      <input type="date" id="issueDate" name="issueDate">
+      <div class="error" id="issueDateError">Please select a valid date.</div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("studentForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      let isValid = true;
+
+      const showError = (inputId, errorId, condition) => {
+        const error = document.getElementById(errorId);
+        if (condition) {
+          error.style.display = "block";
+          isValid = false;
+        } else {
+          error.style.display = "none";
+        }
+      };
+
+      const username = document.getElementById("username").value.trim();
+      showError("username", "usernameError", username.length < 4);
+
+      const password = document.getElementById("password").value.trim();
+      showError("password", "passwordError", password.length < 6);
+
+      const studentId = document.getElementById("studentId").value.trim();
+      showError("studentId", "studentIdError", studentId.length < 3);
+
+      const name = document.getElementById("name").value.trim();
+      showError("name", "nameError", name.length < 3);
+
+      const email = document.getElementById("email").value.trim();
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      showError("email", "emailError", !email.match(emailPattern));
+
+      const bookId = document.getElementById("bookId").value.trim();
+      showError("bookId", "bookIdError", bookId === "");
+
+      const issueDate = document.getElementById("issueDate").value;
+      showError("issueDate", "issueDateError", !issueDate);
+
+      if (isValid) {
+        alert("Submission successful!");
+        this.reset();
+      }
+    });
+  </script>
+</body>
+</html>
+>>>>>>> 4a452f48f528837a7a4b74b11b40d166626a2659
