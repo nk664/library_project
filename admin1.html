@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Online College Library</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
+
+    header {
+      background-color: #007BFF;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    nav {
+      background-color: #0056b3;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: none; /* hidden by default */
+    }
+
+    .active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Online College Library</h1>
+    <p>Explore, Search, and Learn</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a onclick="showSection('dashboard')">Dashboard</a>
+    <a onclick="showSection('books')">Books</a>
+    <a onclick="showSection('students')">Students</a>
+    <a onclick="showSection('transactions')">Transaction</a>
+    <a onclick="showSection('reports')">Reports</a>
+  </nav>
+
+  <div class="container">
+    <!-- Sections -->
+    <div id="home" class="section active">
+      <h2>Welcome to the Library</h2>
+      <p>This is the home section.</p>
+    </div>
+
+    <div id="dashboard" class="section">
+      <h2>Dashboard</h2>
+      <p>Show some statistics here.</p>
+    </div>
+
+    <div id="books" class="section">
+      <h2>Books</h2>
+      <p>Add or view books here.</p>
+    </div>
+
+    <div id="students" class="section">
+      <h2>Students</h2>
+      <p>Manage student data here.</p>
+    </div>
+
+    <div id="transactions" class="section">
+      <h2>Transactions</h2>
+      <p>View book issue/return history.</p>
+    </div>
+
+    <div id="reports" class="section">
+      <h2>Reports</h2>
+      <p>Generate reports here.</p>
+    </div>
+  </div>
+
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+
+      document.getElementById(sectionId).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
