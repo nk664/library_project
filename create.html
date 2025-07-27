@@ -1,50 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registration</title>
   <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-nav {
-  background-color: #1c53b2;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  font-size: x-large;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
+    nav {
+      background-color: #1c53b2;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: x-large;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
     body {
       color: black;
       background-size: cover;
     }
+
     .center-wrapper {
-      height: calc(100vh - 100px);  
+      height: calc(100vh - 100px);
       display: flex;
       justify-content: center;
       align-items: center;
     }
+
     .register-box {
-      margin-top: 500px;
       margin: auto;
       background: #f4f5f2ea;
       padding: 100px;
       border-radius: 10px;
-      max-width: 400px; 
+      max-width: 400px;
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
-    input, select {
+
+    input,
+    select {
       width: 100%;
       padding: 8px;
       margin-top: 4px;
       margin-bottom: 15px;
       box-sizing: border-box;
     }
+
     button {
       background-color: rgb(5, 50, 250);
       color: white;
@@ -54,18 +60,21 @@ nav {
       padding: 10px;
       cursor: pointer;
     }
+
     button:hover {
       background-color: darkblue;
     }
+
     a:hover {
       color: rgb(2, 2, 110);
     }
   </style>
 </head>
+
 <body>
   <header>
     <nav>
-      <h1>Welcome to library</h1>
+      <h1>Welcome to Library</h1>
     </nav>
   </header>
 
@@ -74,38 +83,49 @@ nav {
       <strong>
         <h2>Library Registration</h2><br>
       </strong>
-      <form  id="loginForm">
+      <form id="registerForm">
         <label for="name">Name</label>
-        <input type="text" id="name" placeholder="Enter Name">
+        <input type="text" id="name" placeholder="Enter Name" required>
 
         <label for="username">User Name</label>
-        <input type="text" id="username" placeholder="Enter User Name">
+        <input type="text" id="username" placeholder="Enter User Name" required>
 
         <label for="email">Email</label>
-        <input type="text" id="email" placeholder="Enter Email">
+        <input type="text" id="email" placeholder="Enter Email" required>
 
         <label for="number">Phone</label>
-        <input type="number" id="number" placeholder="Enter Number">
-
-        <!-- Aligned Send OTP Button -->
-        <button type="button">Send OTP</button>
-
-        <label for="otp">Enter OTP</label>
-        <input type="text" id="otp" placeholder="Enter OTP">
+        <input type="number" id="number" placeholder="Enter Number" required>
 
         <label for="option">Register as</label>
-        <select name="option" id="option">
+        <select name="option" id="option" required>
           <option value="select">Select</option>
           <option value="admin">Admin</option>
           <option value="student">Student</option>
         </select>
 
         <label for="pass">Set Password</label>
-        <input type="password" id="pass" placeholder="Set Password">
+        <input type="password" id="pass" placeholder="Set Password" required>
 
         <button type="submit">Register</button>
       </form>
     </div>
   </main>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function (event) {
+      event.preventDefault(); // Stop default form submission
+
+      const role = document.getElementById("option").value;
+
+      if (role === "admin") {
+        window.location.href = "admin.html"; // Redirect to admin page
+      } else if (role === "student") {
+        window.location.href = "student.html"; // Redirect to student page
+      } else {
+        alert("Please select a valid role (Admin or Student).");
+      }
+    });
+  </script>
 </body>
+
 </html>

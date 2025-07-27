@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Online College Library - Home</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -49,7 +52,7 @@
       padding: 20px;
       margin-bottom: 20px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     h2 {
@@ -64,7 +67,9 @@
       margin-top: 5px;
     }
 
-    input[type="text"], input[type="email"], textarea {
+    input[type="text"],
+    input[type="email"],
+    textarea {
       width: 100%;
       padding: 10px;
       margin-top: 10px;
@@ -74,8 +79,6 @@
     }
 
     button {
-      background-color: #007BFF;
-      color: white;
       padding: 10px 20px;
       border: none;
       border-radius: 5px;
@@ -96,7 +99,7 @@
       border-radius: 8px;
       padding: 15px;
       text-align: center;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     }
 
     .book-card img {
@@ -116,6 +119,63 @@
       font-size: 0.95em;
     }
 
+    .book-btns {
+      margin-top: 10px;
+    }
+
+    .book-btns button {
+      margin: 5px;
+    }
+
+    .detail-btn {
+      background-color: #1c53b2;
+      color: white;
+    }
+
+    .issue-btn {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .detail-btn:hover {
+      background-color: #0e3b84;
+    }
+
+    .issue-btn:hover {
+      background-color: #1d7a34;
+    }
+
+    .book-details-area {
+      display: none;
+      margin-top: 10px;
+      font-size: 0.95em;
+      color: #444;
+    }
+
+    .book-details-area.active {
+      display: block;
+    }
+
+    .see-more-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .see-more-btn {
+      background-color: #144eee;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .see-more-btn:hover {
+      background-color: #300cfc;
+    }
+
     footer {
       text-align: center;
       background-color: #222;
@@ -125,6 +185,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -133,14 +194,15 @@
   </header>
 
   <nav>
-    <a href="index.html" target="_blank">Home</a>
-    <a href="books.html " target="_blank">Catalog</a>
-    <a href="create.html"target="_blank">Create Account</a>
-    <a href="login.html"target="_blank">Login</a>
-  
+    <a href="index.html">Home</a>
+    <a href="book.html">Catalog</a>
+    <a href="create.html">Create Account</a>
+    <a href="login.html">Login</a>
   </nav>
 
   <div class="container">
+
+    <!-- Search Section -->
     <div class="section">
       <h2>Search the Library</h2>
       <form onsubmit="return validateSearch()">
@@ -150,24 +212,52 @@
       </form>
     </div>
 
-    <!-- Book Cards Section -->
+    <!-- Featured Books Section -->
     <div class="section">
       <h2>Featured Books</h2>
       <div class="books-grid">
+
+        <!-- Book 1 -->
         <div class="book-card">
-          
-          <div class="book-title">Operating Systems</div>
-          <div class="book-author"></div>
+          <div class="book-title">
+            <img src="images/os.jpg" alt="Operating System">
+            <p>OPERATING SYSTEM</p>
+          </div>
+          <div class="book-author">Author: Galvin</div>
+          <div class="book-btns">
+            <button onclick="toggleDetailsSection('details1')" class="detail-btn">More Details</button>
+          </div>
+          <div id="details1" class="book-details-area">
+            <p>This book covers memory management, scheduling, and process handling.</p>
+            <button onclick="applyIssue('Operating System')" class="issue-btn">Apply to Issue</button>
+          </div>
         </div>
+
+        <!-- Book 2 -->
         <div class="book-card">
-         
-          <div class="book-title">Python Programming</div>
-          <div class="book-author"></div>
+          <div class="book-title">
+            <img src="images/d.jpg" alt="Data Structure">
+            <p>DATA STRUCTURE USING C</p>
+          </div>
+          <div class="book-author">Author: Reema Thareja</div>
+          <div class="book-btns">
+            <button onclick="toggleDetailsSection('details2')" class="detail-btn">More Details</button>
+          </div>
+          <div id="details2" class="book-details-area">
+            <p>This book covers linked lists, stacks, queues, trees, and graphs in C.</p>
+            <button onclick="applyIssue('Data Structure')" class="issue-btn">Apply to Issue</button>
+          </div>
         </div>
+
+      </div>
+
+      <!-- See More Button -->
+      <div class="see-more-container">
+        <button onclick="window.location.href='book.html'" class="see-more-btn">See More</button>
       </div>
     </div>
 
-    <!-- Contact Form Section -->
+    <!-- Contact Section -->
     <div class="section">
       <h2>Contact Us</h2>
       <form onsubmit="return validateContactForm()">
@@ -204,7 +294,6 @@
 
     function validateContactForm() {
       let isValid = true;
-
       const name = document.getElementById("contactName").value.trim();
       const email = document.getElementById("contactEmail").value.trim();
       const message = document.getElementById("contactMessage").value.trim();
@@ -218,8 +307,7 @@
         isValid = false;
       } else {
         nameError.style.display = "none";
-      }   
-    
+      }
 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
@@ -238,7 +326,24 @@
 
       return isValid;
     }
+
+    function toggleDetailsSection(id) {
+      const detailBox = document.getElementById(id);
+      detailBox.classList.toggle("active");
+    }
+
+    function applyIssue(bookName) {
+      const isRegistered = localStorage.getItem("isRegistered") === "true";
+      if (!isRegistered) {
+        alert("Please register first to issue this book.");
+        window.location.href = "create.html";
+      } else {
+        alert(`Redirecting to login to issue: ${bookName}`);
+        window.location.href = "login.html";
+      }
+    }
   </script>
 
 </body>
+
 </html>
